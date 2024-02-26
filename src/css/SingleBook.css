@@ -1,0 +1,9 @@
+.style-card{
+width: '5rem';
+height: '7rem';
+}
+
+.style-card img {
+    object-fit: cover;
+    aspect-ratio: 1/1.5;
+}
