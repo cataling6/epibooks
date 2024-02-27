@@ -35,19 +35,14 @@ function App() {
     // </>
     <>
       <BrowserRouter>
-        <MyNav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Container>
-          <Welcome />
-          <Routes>
-            <Route exact path="/" element={<AllTheBooks searchQuery={searchQuery} />} />
-            <Route path='*' element={<NotFound />} />
-            {/* <Route element={<ProtectedRoutes />} >
-            <Route path="/home" element={<Homepage />} />
-          </Route> */}
-
-          </Routes>
-        </Container>
-        <MyFooter />
+        <Routes>
+          <Route exact path='/' element={<Login />} />
+          {/* <Route exact path="/" element={<AllTheBooks searchQuery={searchQuery} />} /> */}
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/home' element={<Homepage />} />
+          </Route>
+          <Route path='*' element={<NotFound />} />
+        </Routes>
       </BrowserRouter >
     </>
   )

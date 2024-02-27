@@ -1,33 +1,53 @@
-import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-    const [loginFrom, setLoginForm] = useState({
+const Loginpage = () => {
+    const [loginForm, setLoginForm] = useState({
         username: "",
-        password: ""
-    })
+        password: "",
+    });
+
+    const navigate = useNavigate();
+
     const onChangeFormData = (e) => {
         const { name, value } = e.target;
         setLoginForm({
-            ...loginFrom,
+            ...loginForm,
             [name]: value,
-        })
-    }
-    const onSubmit = async () => {
-        await axios.post("https://dummyjson.com/auth/login", loginFrom).then((response) => {
-            //await axios.post("https://dummyjson.com/auth/login", loginFrom).then((response) => {
-            if (response.status === 200) {
-                localStorage.setItem("auth", JSON.stringify(response.data));
-            }
-        }).catch((error) => console.log(error))
+        });
     };
-    return (
-        <form on onSubmit={onSubmit}>
-            <input type="text" name="username" value={loginFrom.username} onChange={onChangeFormData} />
-            <input type="text" name="password" value={loginFrom.password} onChange={onChangeFormData} />
-            <button>login</button>
-        </form>
-    )
-}
 
-export default Login
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await axios
+            .post("https://dummyjson.com/auth/login", loginForm)
+            .then((response) => {
+                if (response.status === 200) {
+                    localStorage.setItem("auth", JSON.stringify(response.data));
+                    navigate("/home");
+                }
+            })
+            .catch((error) => console.error(error));
+    };
+
+    return (
+        <form onSubmit={onSubmit}>
+            <input
+                type="text"
+                name="username"
+                value={loginForm.username}
+                onChange={onChangeFormData}
+            />
+            <input
+                type="password"
+                name="password"
+                value={loginForm.password}
+                onChange={onChangeFormData}
+            />
+            <button>Effettua il login</button>
+        </form>
+    );
+};
+
+export default Loginpage;
