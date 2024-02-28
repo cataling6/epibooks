@@ -7,8 +7,8 @@ const isAuthorized = () => {
     return session?.token
 }
 const ProtectedRoutes = () => {
-    const isAuth = isAuthorized()
-    return isAuth === true ? <Outlet /> : <Login />;
+    const isAuth = isAuthorized();
+    return isAuth ? <Outlet /> : <Login />;
 }
 
 

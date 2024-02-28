@@ -5,9 +5,7 @@ import MyFooter from "../components/MyFooter"
 const Mainlayout = ({ children }) => {
     return (
         <>
-            <MyNav />
             {children}
-            <MyFooter />
         </>
     )
 }

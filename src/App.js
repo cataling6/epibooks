@@ -19,32 +19,44 @@ import NotFound from './pages/NotFound'
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   return (
-    // <>
-    //   <BookProvider>
-    //     <SearchProvider>
-
-    //       <MyNav />
-    //       <Container>
-    //         <Welcome />
-    //         <AllTheBooks />
-    //       </Container>
-    //       <MyFooter />
-
-    //     </SearchProvider>
-    //   </BookProvider>
-    // </>
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path='/' element={<Login />} />
-          {/* <Route exact path="/" element={<AllTheBooks searchQuery={searchQuery} />} /> */}
-          <Route element={<ProtectedRoutes />}>
-            <Route path='/home' element={<Homepage />} />
-          </Route>
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </BrowserRouter >
+
+
+
+      <BookProvider>
+        <SearchProvider>
+
+          <MyNav />
+          <Container>
+            <Welcome />
+            <BrowserRouter>
+              <Routes>
+                {/* <Route exact path='/' element={<AllTheBooks />} /> */}
+                <Route exact path='/' element={<Login />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path='/home' element={<Homepage />} />
+                  <Route path='*' element={<NotFound />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </Container>
+          <MyFooter />
+
+        </SearchProvider>
+      </BookProvider>
     </>
+    // <>
+    //   <BrowserRouter>
+    //     <Routes>
+    //       <Route exact path='/' element={<Login />} />
+    //       {/* <Route exact path="/" element={<AllTheBooks searchQuery={searchQuery} />} /> */}
+    //       <Route element={<ProtectedRoutes />}>
+    //         <Route path='/home' element={<Homepage />} />
+    //       </Route>
+    //       <Route path='*' element={<NotFound />} />
+    //     </Routes>
+    //   </BrowserRouter >
+    // </>
   )
 }
 
