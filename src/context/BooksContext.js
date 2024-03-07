@@ -8,7 +8,7 @@ export const BookProvider = ({ children }) => {
 
     const getBooks = async () => {
         try {
-            const response = await fetch('https://epibooks.onrender.com/horror')
+            const response = await fetch('https://epibooks.onrender.com/fantasy')
             const data = await response.json();
             setBooks(data);
 
