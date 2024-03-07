@@ -1,9 +1,25 @@
 import { Navbar, Nav, Container, Form, Col } from 'react-bootstrap'
-
 import { useSearch } from '../context/SearchContext';
+import { useEffect, useState } from 'react';
 
 const MyNav = () => {
   const { searchQuery, setSearchQuery } = useSearch()
+  const [logged, setLogged] = useState(null);
+
+  useEffect(() => {
+    const authYes = localStorage.getItem("auth");
+    if (authYes) {
+      setLogged(true);
+    }
+  }, [logged]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth");
+    setLogged(false);
+    window.location.href = '/'
+
+  };
+
   return (
 
     <Navbar Navbar
@@ -20,6 +36,7 @@ const MyNav = () => {
             <Nav.Link href="#">Home</Nav.Link>
             <Nav.Link href="#">About</Nav.Link>
             <Nav.Link href="#">Browse</Nav.Link>
+            {logged ? <Nav.Link onClick={handleLogout} >Logout</Nav.Link> : ""}
           </Nav>
           <Col lg={3} className="text-center">
             <Form.Group>

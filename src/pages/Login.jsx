@@ -26,26 +26,31 @@ const Loginpage = () => {
                 if (response.status === 200) {
                     localStorage.setItem("auth", JSON.stringify(response.data));
                     navigate("/home");
+
                 }
             })
             .catch((error) => console.error(error));
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="form-control row gy-2">
+            <label><b>Username:</b> - kminchelle</label>
             <input
+                className="form-control"
                 type="text"
                 name="username"
                 value={loginForm.username}
                 onChange={onChangeFormData}
             />
+            <label><b>Password:</b> - 0lelplR</label>
             <input
+                className="form-control"
                 type="password"
                 name="password"
                 value={loginForm.password}
                 onChange={onChangeFormData}
             />
-            <button>Effettua il login</button>
+            <button className="btn btn-primary">Login</button>
         </form>
     );
 };

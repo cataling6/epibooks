@@ -6,6 +6,7 @@ import AllTheBooks from '../components/AllTheBooks'
 const Homepage = () => {
     return (
         <Mainlayout>
+            <Welcome />
             <AllTheBooks />
         </Mainlayout>
     )

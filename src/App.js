@@ -23,7 +23,6 @@ function App() {
         <SearchProvider>
           <MyNav />
           <Container>
-            <Welcome />
             <BrowserRouter>
               <Routes>
                 {/* <Route exact path='/' element={<AllTheBooks />} /> */}
