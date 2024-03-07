@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 const Loginpage = () => {
     const [loginForm, setLoginForm] = useState({
         username: "",
@@ -33,25 +34,27 @@ const Loginpage = () => {
     };
 
     return (
-        <form onSubmit={onSubmit} className="form-control row gy-2">
-            <label><b>Username:</b> - kminchelle</label>
-            <input
-                className="form-control"
-                type="text"
-                name="username"
-                value={loginForm.username}
-                onChange={onChangeFormData}
-            />
-            <label><b>Password:</b> - 0lelplR</label>
-            <input
-                className="form-control"
-                type="password"
-                name="password"
-                value={loginForm.password}
-                onChange={onChangeFormData}
-            />
-            <button className="btn btn-primary">Login</button>
-        </form>
+        <div className="container" >
+            <form onSubmit={onSubmit} className="form-control row gy-2">
+                <label> <b>Username:</b> - kminchelle</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    name="username"
+                    value={loginForm.username}
+                    onChange={onChangeFormData}
+                />
+                <label><b>Password:</b> - 0lelplR</label>
+                <input
+                    className="form-control"
+                    type="password"
+                    name="password"
+                    value={loginForm.password}
+                    onChange={onChangeFormData}
+                />
+                <button className="btn btn-primary">Login</button>
+            </form >
+        </div >
     );
 };
 

@@ -12,10 +12,11 @@ const AllTheBooks = () => {
   const { searchQuery } = useSearch();
   const { books } = useContext(BookContext);
   const [url, setUrl] = useState("")
+  const urls = [];
   // const [bookComment, setBookComment] = useState(null);
   // const [selected, setSelected] = useState('')
-  console.log(url);
 
+  console.log(urls)
   return (
     <>
       <Row className='d-flex' >
@@ -23,15 +24,15 @@ const AllTheBooks = () => {
           <Col className="g-2 mt-3 flex-wrap d-flex height-with-scroll gap-3" lg={12}>
             {
               books.filter((b) => b.title.toLowerCase().includes(searchQuery)).map((book) => {
-                if (url === "")
-                  setUrl(`/bookDetails/${book.asin}`)
-                console.log(url);
+                const bookUrl = `/bookDetails/${book.asin}`;
+                urls.push(bookUrl);
                 return (
                   <Col lg={2} key={book.asin}>
-                    <SingleBook book={book} url={url} />
+                    <SingleBook book={book} url={bookUrl} />
                   </Col>
                 )
-              })}
+              })
+            }
           </Col>
           {/* <Col className="g-2 mt-3" lg={6}><CommentArea asin={selected} />
           </Col> */}
@@ -40,6 +41,7 @@ const AllTheBooks = () => {
       </Row >
     </>
   )
+
 }
 
 export default AllTheBooks

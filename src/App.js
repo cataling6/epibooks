@@ -3,7 +3,6 @@ import './App.css'
 import { useState } from 'react'
 import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
-import Welcome from './components/Welcome'
 import { Container } from 'react-bootstrap'
 import { SearchProvider } from './context/SearchContext'
 import { BookProvider } from './context/BooksContext'
@@ -22,7 +21,7 @@ function App() {
       <BookProvider>
         <SearchProvider>
           <MyNav />
-          <Container>
+          <Container style={{ minHeight: 'calc(100vh - 100px)' }}>
             <BrowserRouter>
               <Routes>
                 {/* <Route exact path='/' element={<AllTheBooks />} /> */}
@@ -30,7 +29,7 @@ function App() {
                 <Route element={<ProtectedRoutes />}>
                   <Route path='/home' element={<Homepage />} />
                   <Route path='*' element={<NotFound />} />
-                  <Route path='/bookDetails' element={<BookDetails />} />
+                  <Route path='/bookDetails/:ASIN' element={<BookDetails />} />
                 </Route>
               </Routes>
             </BrowserRouter>
