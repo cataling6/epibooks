@@ -2,3 +2,16 @@
     height: calc(100vh - 230px);
     overflow-y: scroll;
 }
+.height-book-details{
+
+    overflow-y: scroll;
+    height: calc(100vh - 120px);
+}
+.no-resize{
+  resize: none;
+}
+.custom-close-position{
+   
+    top: 0;
+    right: 0%;
+}
