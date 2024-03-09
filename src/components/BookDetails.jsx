@@ -4,13 +4,16 @@ import { Card, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import MyNav from "./MyNav";
 import MyFooter from "./MyFooter";
+import { DebounceInput } from "react-debounce-input";
 
 function BookDetails() {
-    const [isDetail, setIsDetail] = useState(false);
+
     const [book, setBook] = useState([]);
     const [commentInviato, setCommentInviato] = useState(false);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
+    const [deletedComment, setDeletedComment] = useState('');
+    const [author, setAuthor] = useState('');
     const [rate, setRate] = useState('');
     const [error, setError] = useState('')
     const { ASIN } = useParams()
@@ -27,11 +30,6 @@ function BookDetails() {
         elementId: ASIN
     };
 
-    const checkUrl = () => {
-        const h = window.location.href;
-        console.log(h);
-
-    }
     const getBooks = async () => {
         try {
             const response = await fetch(urlGetBoook)
@@ -53,6 +51,7 @@ function BookDetails() {
             setError(e);
         }
     }
+
 
     const submitComment = async (e) => {
 
@@ -82,20 +81,21 @@ function BookDetails() {
         }
     }
 
-    const deleteComment = async (comToBeDeleted) => {
+    const deleteComment = async (commObj) => {
 
         try {
-            const response = await fetch(urlDelete + comToBeDeleted, {
+            const response = await fetch(urlDelete + commObj._id, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                //body: JSON.stringify(comToBeDeleted)
 
             })
             if (response.ok) {
                 setCommentDeleted(true)
+                setAuthor(commObj.author)
+                setDeletedComment(commObj.comment) //mi imposto il commento che è stato cancellato x spararlo in sweetalert
             } else {
                 setError(response.status);
             }
@@ -109,8 +109,6 @@ function BookDetails() {
     useEffect(() => {
         getBooks();
         getComments();
-        checkUrl();
-
 
         if (error)
             new Swal({
@@ -138,16 +136,19 @@ function BookDetails() {
         if (commentDeleted) {
             new Swal({
                 title: 'Commento Cancellato!',
-                text: "yess",
+                text: "Hai cancellato il commento '" + deletedComment + "' di " + author,
                 icon: 'success',
                 showLoaderOnConfirm: true,
                 willClose: () => {
                     setError(null);
-                    setCommentDeleted(false);
+                    setAuthor(null)
+                    setCommentDeleted(false); //controllo se il commento è stato cancellato
+                    setDeletedComment(null);  //svuoto il commento cancellato
+
                 }
             });
         }
-    }, [comment, error, commentDeleted])
+    }, [error, commentDeleted, commentInviato])
 
     return <>
         <MyNav />
@@ -166,6 +167,7 @@ function BookDetails() {
 
                     )
                 })}
+
                 <div className="d-flex flex-column form-control gap-2"  >
                     <label>Voto:</label>
                     <select value={rate} className="form-select" onChange={(e) => setRate(e.target.value)}>
@@ -180,6 +182,7 @@ function BookDetails() {
                     <textarea className="form-control no-resize" placeholder="Recensisci..." value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
                     <input type="button" className="btn btn-danger" value="invia" onClick={submitComment} />
                 </div>
+
             </div>
             <div className="col height-book-details rounded-2 p-2 bg-gradient bg-dark shadow ">
                 {comments.map((c) => {
@@ -187,7 +190,7 @@ function BookDetails() {
 
                         <Col lg={12} key={c._id} >
                             <div className="form-control mb-2 fade show">
-                                <div className="d-flex justify-content-end" id={c._id}><span className="btn btn-close custom-close-position" onClick={(e) => deleteComment(c._id)}></span></div>
+                                <div className="d-flex justify-content-end" id={c._id}><span className="btn btn-close custom-close-position" onClick={(e) => deleteComment(c)}></span></div>
                                 <p className="fw-bold">Autore: <span className="fw-normal">{c.author}</span></p>
                                 <p className="fw-bold">Commento: <span className="fw-normal">{c.comment}</span></p>
                                 <p className="fw-bold">Valutazione: <span className="fw-normal">{c.rate}</span></p>
