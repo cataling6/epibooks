@@ -12,11 +12,12 @@ function BookDetails() {
     const [rate, setRate] = useState('');
     const [error, setError] = useState('')
     const { ASIN } = useParams()
-
+    const [commentDeleted, setCommentDeleted] = useState(false);
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlZTRkNWJkNWQxMjAwMTg5MGQzMmYiLCJpYXQiOjE3MDk5MjQ5MTEsImV4cCI6MTcxMTEzNDUxMX0.EToU0ZBKiT7mLOTdd_9ctJJfz-VHJR81AWGtXQxA98k";
     const urlGetBoook = 'https://epibooks.onrender.com/fantasy/' + ASIN;
     const urlGetComments = `https://striveschool-api.herokuapp.com/api/books/${ASIN}/comments/`;
     const urlSubmit = 'https://striveschool-api.herokuapp.com/api/comments';
+    const urlDelete = 'https://striveschool-api.herokuapp.com/api/comments/';
 
     const dataToSubmit = {
         comment: comment,
@@ -75,9 +76,36 @@ function BookDetails() {
         }
     }
 
+
+    const deleteComment = async (comToBeDeleted) => {
+
+        console.log(comToBeDeleted);
+        try {
+            const response = await fetch(urlDelete + comToBeDeleted, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                //body: JSON.stringify(comToBeDeleted)
+
+            })
+            if (response.ok) {
+                setCommentDeleted(true)
+            } else {
+                setError(response.status);
+            }
+
+        } catch (er) {
+            setError(er);
+        }
+    }
+
+
     useEffect(() => {
         getBooks();
         getComments();
+
         if (error)
             new Swal({
                 title: 'Errore: ' + error,
@@ -100,7 +128,20 @@ function BookDetails() {
                 }
             });
         }
-    }, [comment, error])
+
+        if (commentDeleted) {
+            new Swal({
+                title: 'Commento Cancellato!',
+                text: "yess",
+                icon: 'success',
+                showLoaderOnConfirm: true,
+                willClose: () => {
+                    setError(null);
+                    setCommentDeleted(false);
+                }
+            });
+        }
+    }, [comment, error, commentDeleted])
 
     return <>
         <div className="container d-flex gap-2">
@@ -139,7 +180,7 @@ function BookDetails() {
 
                         <Col lg={12} key={c._id} >
                             <div className="form-control mb-2">
-                                <div className="d-flex justify-content-end "><span className="btn btn-close custom-close-position"></span></div>
+                                <div className="d-flex justify-content-end" id={c._id}><span className="btn btn-close custom-close-position" onClick={(e) => deleteComment(c._id)}></span></div>
                                 <p className="fw-bold">Autore: <span className="fw-normal">{c.author}</span></p>
                                 <p className="fw-bold">Commento: <span className="fw-normal">{c.comment}</span></p>
                                 <p className="fw-bold">Valutazione: <span className="fw-normal">{c.rate}</span></p>
