@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 
 const Loginpage = () => {
@@ -8,6 +10,7 @@ const Loginpage = () => {
         username: "",
         password: "",
     });
+    const [error, setError] = useState(false);
 
     const navigate = useNavigate();
 
@@ -19,6 +22,20 @@ const Loginpage = () => {
         });
     };
 
+    useEffect(() => {
+
+        if (error)
+            new Swal({
+                title: 'Credenziali errate! ',
+                text: "Verifica i dati inseriti",
+                icon: 'error',
+                showLoaderOnConfirm: true,
+                willClose: () => {
+                    setError(null)
+                }
+            });
+
+    }, [error])
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios
@@ -30,7 +47,7 @@ const Loginpage = () => {
 
                 }
             })
-            .catch((error) => console.error(error));
+            .catch((error) => setError(error));
     };
 
     return (
