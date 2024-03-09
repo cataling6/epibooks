@@ -34,27 +34,30 @@ const Loginpage = () => {
     };
 
     return (
-        <div className="container" >
-            <form onSubmit={onSubmit} className="form-control row gy-2">
-                <label> <b>Username:</b> - kminchelle</label>
-                <input
-                    className="form-control"
-                    type="text"
-                    name="username"
-                    value={loginForm.username}
-                    onChange={onChangeFormData}
-                />
-                <label><b>Password:</b> - 0lelplR</label>
-                <input
-                    className="form-control"
-                    type="password"
-                    name="password"
-                    value={loginForm.password}
-                    onChange={onChangeFormData}
-                />
-                <button className="btn btn-primary">Login</button>
-            </form >
-        </div >
+        <>
+            <h1 className="text-center">benvenuto nel mio Epicbooks</h1>
+            <div className="container w-25 p-5" >
+                <form onSubmit={onSubmit} className="form-control row gy-2">
+                    <label> <b>Username:</b> - kminchelle</label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        name="username"
+                        value={loginForm.username}
+                        onChange={onChangeFormData}
+                    />
+                    <label><b>Password:</b> - 0lelplR</label>
+                    <input
+                        className="form-control"
+                        type="password"
+                        name="password"
+                        value={loginForm.password}
+                        onChange={onChangeFormData}
+                    />
+                    <button className="btn btn-primary">Login</button>
+                </form >
+            </div >
+        </>
     );
 };
 

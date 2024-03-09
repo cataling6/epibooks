@@ -20,9 +20,9 @@ function App() {
     <>
       <BookProvider>
         <SearchProvider>
-          <MyNav />
           <Container style={{ minHeight: 'calc(100vh - 100px)' }}>
             <BrowserRouter>
+
               <Routes>
                 {/* <Route exact path='/' element={<AllTheBooks />} /> */}
                 <Route exact path='/' element={<Login />} />
@@ -34,7 +34,7 @@ function App() {
               </Routes>
             </BrowserRouter>
           </Container>
-          <MyFooter />
+
 
         </SearchProvider>
       </BookProvider>

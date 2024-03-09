@@ -1,10 +1,13 @@
 import { Navbar, Nav, Container, Form, Col } from 'react-bootstrap'
 import { useSearch } from '../context/SearchContext';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const MyNav = () => {
   const { searchQuery, setSearchQuery } = useSearch()
   const [logged, setLogged] = useState(null);
+  const location = useLocation();
+  const isDetails = location.pathname.startsWith('/bookDetails/') //mi servirà per far scomparirre la ricerca nella Bookdetails (inutilmente visualizzata)
 
   useEffect(() => {
     const authYes = localStorage.getItem("auth");
@@ -24,7 +27,7 @@ const MyNav = () => {
 
     <Navbar Navbar
       expand="lg"
-      className="bg-body-tertiary mb-3"
+      className="bg-body-tertiary mb-3 shadow"
       bg="dark"
       data-bs-theme="dark"
     >
@@ -38,7 +41,7 @@ const MyNav = () => {
             <Nav.Link href="#">Browse</Nav.Link>
             {logged ? <Nav.Link onClick={handleLogout} >Logout</Nav.Link> : ""}
           </Nav>
-          <Col lg={3} className="text-center">
+          {isDetails ? "" : <Col lg={3} className="text-center">
             <Form.Group>
               <Form.Control
                 type="search"
@@ -47,7 +50,7 @@ const MyNav = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </Form.Group>
-          </Col>
+          </Col>}
         </Navbar.Collapse>
 
       </Container>

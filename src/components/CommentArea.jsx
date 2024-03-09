@@ -3,14 +3,12 @@ import CommentList from './CommentList'
 import AddComment from './AddComment'
 import Loading from './Loading'
 import Error from './Error'
-import { SelectedContext, useSelected } from '../context/SelectedContext'
 
 const CommentArea = ({ asin }) => {
   const [comments, setComments] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  //const [selected, setSelected] = useSelected();
-  console.log(asin)
+
   useEffect(() => {
     const getComments = async () => {
       setIsLoading(true)

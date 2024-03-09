@@ -4,7 +4,7 @@ const Welcome = () => {
 
   return (
 
-    <Alert key={'dark'} className="text-center" variant='dark'>
+    <Alert key={'dark'} className="text-center shadow" variant='dark'>
       <h1>Benvenuti in EpiBooks!</h1>
 
     </Alert>

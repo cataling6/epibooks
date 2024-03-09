@@ -1,8 +1,7 @@
-import { useContext, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import "../css/SingleBook.css"
-import { SelectedContext, SelectedProvider, useSelected } from '../context/SelectedContext'
-import CommentArea from './CommentArea'
+import { useSelected } from '../context/SelectedContext'
+
 
 
 const SingleBook = ({ book, url }) => {
@@ -23,8 +22,6 @@ const SingleBook = ({ book, url }) => {
           </div>
         </Card >
       </a>
-      {/* {selected && <CommentArea asin={book.asin} />
-      } */}
     </>
 
   )

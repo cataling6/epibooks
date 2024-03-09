@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { Card, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
+import MyNav from "./MyNav";
+import MyFooter from "./MyFooter";
 
 function BookDetails() {
-
+    const [isDetail, setIsDetail] = useState(false);
     const [book, setBook] = useState([]);
     const [commentInviato, setCommentInviato] = useState(false);
     const [comments, setComments] = useState([]);
@@ -25,7 +27,11 @@ function BookDetails() {
         elementId: ASIN
     };
 
+    const checkUrl = () => {
+        const h = window.location.href;
+        console.log(h);
 
+    }
     const getBooks = async () => {
         try {
             const response = await fetch(urlGetBoook)
@@ -76,10 +82,8 @@ function BookDetails() {
         }
     }
 
-
     const deleteComment = async (comToBeDeleted) => {
 
-        console.log(comToBeDeleted);
         try {
             const response = await fetch(urlDelete + comToBeDeleted, {
                 method: 'DELETE',
@@ -105,6 +109,8 @@ function BookDetails() {
     useEffect(() => {
         getBooks();
         getComments();
+        checkUrl();
+
 
         if (error)
             new Swal({
@@ -144,12 +150,13 @@ function BookDetails() {
     }, [comment, error, commentDeleted])
 
     return <>
+        <MyNav />
         <div className="container d-flex gap-2">
-            <div className="col height-book-details border border-3 rounded-2 p-2">
+            <div className="col height-book-details rounded-2 p-2 bg-gradient bg-dark shadow d-flex justify-content-between flex-column align-items-center">
                 {book.map((b) => {
                     return (
-                        <Col lg={6} key={b.asin}>
-                            <Card className='style-card'>
+                        <Col lg={6} key={b.asin} className="hover-animation">
+                            <Card className='style-card '>
                                 <Card.Img variant="top" src={b.img} />
                                 <div>
                                     <Card.Title style={{ color: 'black', fontSize: '1em' }} className='text-truncate' title={b.title}>{b.title}</Card.Title>
@@ -174,12 +181,12 @@ function BookDetails() {
                     <input type="button" className="btn btn-danger" value="invia" onClick={submitComment} />
                 </div>
             </div>
-            <div className="col height-book-details border border-3 rounded-2 p-2 ">
+            <div className="col height-book-details rounded-2 p-2 bg-gradient bg-dark shadow ">
                 {comments.map((c) => {
                     return (
 
                         <Col lg={12} key={c._id} >
-                            <div className="form-control mb-2">
+                            <div className="form-control mb-2 fade show">
                                 <div className="d-flex justify-content-end" id={c._id}><span className="btn btn-close custom-close-position" onClick={(e) => deleteComment(c._id)}></span></div>
                                 <p className="fw-bold">Autore: <span className="fw-normal">{c.author}</span></p>
                                 <p className="fw-bold">Commento: <span className="fw-normal">{c.comment}</span></p>
@@ -190,6 +197,7 @@ function BookDetails() {
                 })}
             </div>
         </div>
+        <MyFooter />
     </>
 }
 
