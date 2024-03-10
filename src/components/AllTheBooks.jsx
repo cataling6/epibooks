@@ -2,7 +2,7 @@ import { useSearch } from '../context/SearchContext'
 import { Col, Row } from 'react-bootstrap'
 import { BookContext } from '../context/BooksContext'
 import SingleBook from './SingleBook'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { SelectedProvider } from '../context/SelectedContext'
 
 
