@@ -4,7 +4,6 @@ import { Card, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import MyNav from "./MyNav";
 import MyFooter from "./MyFooter";
-import { DebounceInput } from "react-debounce-input";
 
 function BookDetails() {
 

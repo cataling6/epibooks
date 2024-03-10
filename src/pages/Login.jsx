@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import { axios } from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -38,16 +38,39 @@ const Loginpage = () => {
     }, [error])
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios
-            .post("https://dummyjson.com/auth/login", loginForm)
-            .then((response) => {
-                if (response.status === 200) {
-                    localStorage.setItem("auth", JSON.stringify(response.data));
-                    navigate("/home");
+        try {
+            const response = await fetch("https://dummyjson.com/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loginForm),
+            });
 
-                }
-            })
-            .catch((error) => setError(error));
+            if (response.status === 200) {
+                const data = await response.json();
+                localStorage.setItem("auth", JSON.stringify(data));
+                navigate("/home");
+            } else {
+                // Gestione degli altri stati di risposta, se necessario
+                // Per esempio, potresti voler gestire il caso in cui la risposta non sia 200
+                // Puoi fare ciò che vuoi qui, ad esempio impostare un errore
+                // setError('Errore di autenticazione');
+            }
+        } catch (error) {
+            // Gestione degli errori di rete o errori di parsing JSON
+            setError(error);
+        }
+
+        // await axios
+        //     .post("https://dummyjson.com/auth/login", loginForm)
+        //     .then((response) => {
+        //         if (response.status === 200) {
+        //             localStorage.setItem("auth", JSON.stringify(response.data));
+        //             navigate("/home");
+        //         }
+        //     })
+        //     .catch((error) => setError(error));
     };
 
     return (

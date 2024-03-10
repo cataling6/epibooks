@@ -5,15 +5,11 @@ import SingleBook from './SingleBook'
 import { useContext } from 'react'
 import { SelectedProvider } from '../context/SelectedContext'
 
-
 const AllTheBooks = () => {
   const { searchQuery } = useSearch();
   const { books } = useContext(BookContext);
   const urls = [];
 
-
-
-  console.log(urls)
   return (
     <>
       <Row className='d-flex  ' >
@@ -35,7 +31,6 @@ const AllTheBooks = () => {
       </Row >
     </>
   )
-
 }
 
 export default AllTheBooks
