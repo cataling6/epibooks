@@ -11,3 +11,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.height-with-scroll{
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
+}
+.height-book-details{
+
+    overflow-y: scroll;
+    height: calc(100vh - 120px);
+}
+.no-resize{
+  resize: none;
+}
+.custom-close-position{
+   
+    top: 0;
+    right: 0%;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+  border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(20, 3, 3); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0f0707; 
+}
+
+.hover-animation{
+    transform: scale(1) translate(0);
+    transition: transform 500ms;
+}
+
+.hover-animation:hover{
+    transform: translate(0, 30px)  scale(1.1);
+   
+}
+

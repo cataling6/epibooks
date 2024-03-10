@@ -1,8 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
-import { useState } from 'react'
-import MyNav from './components/MyNav'
-import MyFooter from './components/MyFooter'
 import { Container } from 'react-bootstrap'
 import { SearchProvider } from './context/SearchContext'
 import { BookProvider } from './context/BooksContext'
@@ -15,16 +11,14 @@ import BookDetails from './components/BookDetails'
 
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [searchQuery, setSearchQuery] = useState('');
   return (
     <>
       <BookProvider>
         <SearchProvider>
           <Container style={{ minHeight: 'calc(100vh - 100px)' }}>
             <BrowserRouter>
-
               <Routes>
-                {/* <Route exact path='/' element={<AllTheBooks />} /> */}
                 <Route exact path='/' element={<Login />} />
                 <Route element={<ProtectedRoutes />}>
                   <Route path='/home' element={<Homepage />} />
