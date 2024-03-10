@@ -25,7 +25,7 @@ const MyNav = () => {
 
   return (
 
-    <Navbar Navbar
+    <Navbar
       expand="lg"
       className="bg-body-tertiary mb-3 shadow"
       bg="dark"

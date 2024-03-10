@@ -51,14 +51,8 @@ const Loginpage = () => {
                 const data = await response.json();
                 localStorage.setItem("auth", JSON.stringify(data));
                 navigate("/home");
-            } else {
-                // Gestione degli altri stati di risposta, se necessario
-                // Per esempio, potresti voler gestire il caso in cui la risposta non sia 200
-                // Puoi fare ciò che vuoi qui, ad esempio impostare un errore
-                // setError('Errore di autenticazione');
             }
         } catch (error) {
-            // Gestione degli errori di rete o errori di parsing JSON
             setError(error);
         }
 
@@ -80,6 +74,7 @@ const Loginpage = () => {
                 <form onSubmit={onSubmit} className="form-control row gy-2">
                     <label> <b>Username:</b> - kminchelle</label>
                     <input
+                        data-testid="username"
                         className="form-control"
                         type="text"
                         name="username"
@@ -88,13 +83,14 @@ const Loginpage = () => {
                     />
                     <label><b>Password:</b> - 0lelplR</label>
                     <input
+                        data-testid="password"
                         className="form-control"
                         type="password"
                         name="password"
                         value={loginForm.password}
                         onChange={onChangeFormData}
                     />
-                    <button className="btn btn-primary">Login</button>
+                    <button className="btn btn-primary" data-testid="btnLogin">Login</button>
                 </form >
             </div >
         </>

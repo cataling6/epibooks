@@ -4,10 +4,9 @@ import Welcome from '../components/Welcome';
 
 
 test('Il componente viene montato correttamente', () => {
-    // Renderizza il componente
+
     const { getByTestId } = render(<Welcome />);
 
-    // Verifica che il componente esista nel DOM
-    const componentNode = getByTestId('welcomeId');
-    expect(componentNode).toBeInTheDocument("componente montato ");
+    const componente = getByTestId('welcomeId');
+    expect(componente).toBeInTheDocument("componente montato ");
 });
