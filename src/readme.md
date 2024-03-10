@@ -12,3 +12,5 @@ che ho preso zero, ho rifatto tutto da capo in BookDetails in quanto ho consider
 4) non sono riuscitoi a deployare il progetto ne su github ne su netlify in quanto ricevo degli errori (su netlify)
 
 5) l'end point dei libri è lentino, potrebbe rispondere in ritardo, tutta via dovrebbe esserci il loader ad informare del caricamento. questo x dire che a volte mi viene risposto dall'api anche dopoo 10/15 secondi per poi renderizzare i libri
+
+6) pulsante home funzionante ha il redirect sulla /home, quindi da BookDetails, si può tornare indietro; uguale logout, funziona

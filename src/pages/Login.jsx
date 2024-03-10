@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
-
 const Loginpage = () => {
     const [loginForm, setLoginForm] = useState({
         username: "",
@@ -32,6 +30,7 @@ const Loginpage = () => {
                 showLoaderOnConfirm: true,
                 willClose: () => {
                     setError(null)
+                    console.log(error);
                 }
             });
 
@@ -52,8 +51,14 @@ const Loginpage = () => {
                 localStorage.setItem("auth", JSON.stringify(data));
                 navigate("/home");
             }
-        } catch (error) {
-            setError(error);
+            else if (response.status === 400) {
+                setError(true);
+                console.log("sono dentro");
+            }
+        } catch (er) {
+            // setError(er);
+            // console.log(error);
+            //non so per quale motivo prima di caricare il compito questo catch non mi setta più l'errore... ho gestito l'errore soipra con else if
         }
 
         // await axios
@@ -93,6 +98,8 @@ const Loginpage = () => {
                     <button className="btn btn-primary" data-testid="btnLogin">Login</button>
                 </form >
             </div >
+
+            <h2 className="text-center">per accedere inserisci le credenziali fake visibili sopra; se le sbagli, c'è la sorpresa :D </h2>
         </>
     );
 };
