@@ -9,7 +9,7 @@ const SingleBook = ({ book, url }) => {
 
   return (
     <>
-      <a href={url} target="_blank" rel="noopener noreferrer">
+      <a href={url} rel="noopener noreferrer">
         <Card
           onClick={() => setSelected(isSelected ? "" : book.asin)}
           style={{ border: isSelected ? '3px solid red' : 'none' }}
