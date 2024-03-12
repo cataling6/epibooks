@@ -1,4 +1,4 @@
-https://cataling6.github.io/epibooks/
+https://epicoder-rcg.netlify.app/
 
 1) ho sviluppato questo progetto a pezzi vista la confusione che mi sono trovato in quanto non credevo che fosse valutato; 
 ho avuto l'occasione di mettere giù qualcosa per evitare di prendermi 0 come voto, detto ciò sono completamente consapevole che il progetto
