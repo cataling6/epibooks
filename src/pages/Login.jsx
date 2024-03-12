@@ -75,27 +75,32 @@ const Loginpage = () => {
     return (
         <>
             <h1 className="text-center">benvenuto nel mio Epicbooks</h1>
-            <div className="container w-25 p-5" >
-                <form onSubmit={onSubmit} className="form-control row gy-2">
-                    <label> <b>Username:</b> - kminchelle</label>
-                    <input
-                        data-testid="username"
-                        className="form-control"
-                        type="text"
-                        name="username"
-                        value={loginForm.username}
-                        onChange={onChangeFormData}
-                    />
-                    <label><b>Password:</b> - 0lelplR</label>
-                    <input
-                        data-testid="password"
-                        className="form-control"
-                        type="password"
-                        name="password"
-                        value={loginForm.password}
-                        onChange={onChangeFormData}
-                    />
-                    <button className="btn btn-primary" data-testid="btnLogin">Login</button>
+            <div className="container p-5 col-lg-6" >
+                <form onSubmit={onSubmit} className="form-control col-12 col-sm-12 col-lg-12 gy-2 row">
+                    <div className="col-12 col-lg-12">
+                        <label> <b>Username:</b> - kminchelle</label>
+                        <input
+                            data-testid="username"
+                            className="form-control"
+                            type="text"
+                            name="username"
+                            value={loginForm.username}
+                            onChange={onChangeFormData}
+                        />
+                    </div>
+                    <div className="col-12 col-lg-12">
+
+                        <label><b>Password:</b> - 0lelplR</label>
+                        <input
+                            data-testid="password"
+                            className="form-control"
+                            type="password"
+                            name="password"
+                            value={loginForm.password}
+                            onChange={onChangeFormData}
+                        />
+                    </div>
+                    <button className="btn btn-primary col-lg-12" data-testid="btnLogin">Login</button>
                 </form >
             </div >
 
