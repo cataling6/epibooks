@@ -147,6 +147,7 @@ function BookDetails() {
                 }
             });
         }
+        /* eslint-disable */
     }, [error, commentDeleted, commentInviato])
 
     return <>

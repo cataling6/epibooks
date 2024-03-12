@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from 'react-bootstrap'
 import { SearchProvider } from './context/SearchContext'
 import { BookProvider } from './context/BooksContext'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, HashRouter } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import ProtectedRoutes from './middleware/ProtectedRoutes'
@@ -17,7 +17,7 @@ function App() {
       <BookProvider>
         <SearchProvider>
           <Container style={{ minHeight: 'calc(100vh - 100px)' }}>
-            <BrowserRouter>
+            <HashRouter>
               <Routes>
                 <Route exact path='/' element={<Login />} />
                 <Route element={<ProtectedRoutes />}>
@@ -26,7 +26,7 @@ function App() {
                   <Route path='/bookDetails/:ASIN' element={<BookDetails />} />
                 </Route>
               </Routes>
-            </BrowserRouter>
+            </HashRouter>
           </Container>
 
 
