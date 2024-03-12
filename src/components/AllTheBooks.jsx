@@ -21,7 +21,7 @@ const AllTheBooks = () => {
 
             {
               books.filter((b) => b.title.toLowerCase().includes(searchQuery)).map((book) => {
-                const bookUrl = `/bookDetails/${book.asin}`;
+                const bookUrl = `/#/bookDetails/${book.asin}`;
                 urls.push(bookUrl);
                 return (
 
