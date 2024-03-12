@@ -1,3 +1,5 @@
+https://cataling6.github.io/epibooks/
+
 1) ho sviluppato questo progetto a pezzi vista la confusione che mi sono trovato in quanto non credevo che fosse valutato; 
 ho avuto l'occasione di mettere giù qualcosa per evitare di prendermi 0 come voto, detto ciò sono completamente consapevole che il progetto
 non rispetti al 100% le richieste che sono state fatte durante il mese di react; es.: avevo sviluppato CommentArea. commentList e altre componenti
