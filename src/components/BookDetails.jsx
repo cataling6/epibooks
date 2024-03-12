@@ -156,7 +156,7 @@ function BookDetails() {
             <div className="col height-book-details rounded-2 p-2 bg-gradient bg-dark shadow d-flex justify-content-between flex-column align-items-center">
                 {book.map((b) => {
                     return (
-                        <Col lg={6} key={b.asin} className="hover-animation">
+                        <Col lg={6} xs={6} sm={6} md={6} key={b.asin} className="hover-animation">
                             <Card className='style-card '>
                                 <Card.Img variant="top" src={b.img} />
                                 <div>
